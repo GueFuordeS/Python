@@ -18,8 +18,9 @@ def main(args):
 	janela['font'] = 'Helvetica 80 bold'
 	janela['text'] = strftime('%H:%M:%S')
 
-	janela.pack()
+	janela.pack(expand=True)
 	atualiza_tempo()
+	tk.geometry('450x150+400+200')
 	janela.mainloop()
 
 def atualiza_tempo():
