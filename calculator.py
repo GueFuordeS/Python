@@ -17,6 +17,8 @@ contents_table = ''
 def update_screen(button):
     global screen_text
     screen_text += button
+    if(len(screen_text) > 18):
+        screen_text = screen_text[1:]
     screen['text'] = screen_text
     
 def clean_screen():
@@ -44,7 +46,8 @@ def raise_result():
         screen_text = ''
 
 def raise_expression():
-    result = None
+    return eval(screen_text)
+    
 
 def is_valid():
     global screen_text
@@ -99,7 +102,6 @@ def main(args):
     clear = Button(janela, text='C', width=10, height=4, command=clean_screen)
     erase = Button(janela, text='<==', width=10, height=4, command=clean_last)
     
-
     ######
 
     screen.grid(row=0, column=3, columnspan=2, sticky='e')
