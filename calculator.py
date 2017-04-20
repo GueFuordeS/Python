@@ -57,53 +57,52 @@ def is_valid():
         raise Exception()
 
 def main(args):
-    global janela
-    janela = Tk()
+    global window
+    window = Tk()
 
     ######
     global screen_text
     global screen
-    screen = Label(janela, text='0', height=2, font='Helvetica 15 bold')
+    screen = Label(window, text='0', height=2, font='Helvetica 15 bold')
 
     #numerics buttos
-    num0 = Button(janela, text='0', width=10, height=5)
+    num0 = Button(window, text='0', width=10, height=5)
     num0['command'] = partial(update_screen, '0')
-    num1 = Button(janela, text='1', width=10, height=5)
+    num1 = Button(window, text='1', width=10, height=5)
     num1['command'] = partial(update_screen, '1')
-    num2 = Button(janela, text='2', width=10, height=5)
+    num2 = Button(window, text='2', width=10, height=5)
     num2['command'] = partial(update_screen, '2')
-    num3 = Button(janela, text='3', width=10, height=5)
+    num3 = Button(window, text='3', width=10, height=5)
     num3['command'] = partial(update_screen, '3')
-    num4 = Button(janela, text='4', width=10, height=5)
+    num4 = Button(window, text='4', width=10, height=5)
     num4['command'] = partial(update_screen, '4')
-    num5 = Button(janela, text='5', width=10, height=5)
+    num5 = Button(window, text='5', width=10, height=5)
     num5['command'] = partial(update_screen, '5')
-    num6 = Button(janela, text='6', width=10, height=5)
+    num6 = Button(window, text='6', width=10, height=5)
     num6['command'] = partial(update_screen, '6')
-    num7 = Button(janela, text='7', width=10, height=5)
+    num7 = Button(window, text='7', width=10, height=5)
     num7['command'] = partial(update_screen, '7')
-    num8 = Button(janela, text='8', width=10, height=5)
+    num8 = Button(window, text='8', width=10, height=5)
     num8['command'] = partial(update_screen, '8')
-    num9 = Button(janela, text='9', width=10, height=5)
+    num9 = Button(window, text='9', width=10, height=5)
     num9['command'] = partial(update_screen, '9')
 
     #operators buttons
-    addition = Button(janela, text='+', width=10, height=5)
+    addition = Button(window, text='+', width=10, height=5)
     addition['command'] = partial(update_screen, '+')
-    subtraction = Button(janela, text='-', width=10, height=5)
+    subtraction = Button(window, text='-', width=10, height=5)
     subtraction['command'] = partial(update_screen, '-')
-    multiplication = Button(janela, text='*', width=10, height=5)
+    multiplication = Button(window, text='*', width=10, height=5)
     multiplication['command'] = partial(update_screen, '*')
-    division = Button(janela, text='/', width=10, height=5)
+    division = Button(window, text='/', width=10, height=5)
     division['command'] = partial(update_screen, '/')
-    equal = Button(janela, text='=', width=10, height=5, command=raise_result)
-    dot = Button(janela, text='.', width=10, height=5)
+    equal = Button(window, text='=', width=10, height=5, command=raise_result)
+    dot = Button(window, text='.', width=10, height=5)
     dot['command'] = partial(update_screen, '.')
-    clear = Button(janela, text='C', width=10, height=4, command=clean_screen)
-    erase = Button(janela, text='<==', width=10, height=4, command=clean_last)
+    clear = Button(window, text='C', width=10, height=4, command=clean_screen)
+    erase = Button(window, text='<==', width=10, height=4, command=clean_last)
     
     ######
-
     screen.grid(row=0, column=3, columnspan=2, sticky='e')
 
     #gridding the numbers
@@ -130,9 +129,10 @@ def main(args):
 
     ######
 
-    janela.title('Calculator')
-    janela.geometry('450x400+200+100')
-    janela.mainloop()
+    window.title('Calculator')
+    window.geometry('430x405+250+100')
+    window.resizable(width=False, height=False)
+    window.mainloop()
 
 if __name__=='__main__':
 	main(sys.argv)
