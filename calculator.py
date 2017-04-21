@@ -37,8 +37,8 @@ def raise_result():
     global screen_text
     try:
         is_valid()
-        screen['text'] = eval(screen_text)
-        screen_text = ''
+        screen_text = str(eval(screen_text))
+        screen['text'] = screen_text
     except Exception:
         screen['text'] = 'Invalid expression'
         screen_text = ''
