@@ -11,7 +11,6 @@ from tkinter import *
 from functools import partial
 
 screen_text = ''
-contents_table = ''
 
 def update_screen(button):
     global screen_text
