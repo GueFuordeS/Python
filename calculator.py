@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 '''
-Implementacao simples de uma
-calculadora
+a simple calculator with a gui
 
 @Author Gabriel Fernandes
 '''
@@ -39,15 +38,11 @@ def raise_result():
     global screen_text
     try:
         is_valid()
-        screen['text'] = raise_expression()
+        screen['text'] = eval(screen_text)
         screen_text = ''
     except Exception:
         screen['text'] = 'Invalid expression'
         screen_text = ''
-
-def raise_expression():
-    return eval(screen_text)
-    
 
 def is_valid():
     global screen_text
