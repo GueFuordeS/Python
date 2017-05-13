@@ -19,7 +19,7 @@ def factorial(num):
 
 if(__name__=='__main__'):
     try:
-        print(factorial(int(argv[1])))
+        factorial(int(argv[1]))
         
     except(IndexError, ValueError) as e:
         print(str(type(e))[8:-2], ': Please, insert a natural number after "factorial.py" in command line', sep='')
