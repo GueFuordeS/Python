@@ -12,7 +12,11 @@ def prime(num):
         compute(num, time()-start, isprime=True)
         return True
     
-    for i in range(2, num):
+    if num % 2 == 0:
+        compute(num, time()-start)
+        return False
+    
+    for i in range(3, num, 2):
         if num % i == 0:
             compute(num, time()-start)
             return False
