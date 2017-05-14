@@ -14,3 +14,5 @@ fecho reflexivo em um conjunto
 foreverloop ==> for loop infinito
 
 step ==> um tipo de cronometro, 1 step a cada 1 segundo
+
+...and some new stuffs that need step in here
