@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from sys import argv
 from time import time
 
@@ -5,56 +7,51 @@ def prime(num):
     start = time()
     
     if num < 2:
-        compute(num, time()-start)
         return False
 
     if num == 2:
-        compute(num, time()-start, isprime=True)
+        compute(num, time()-start)
         return True
     
     if num % 2 == 0:
-        compute(num, time()-start)
         return False
     
     for i in range(3, num, 2):
         if num % i == 0:
-            compute(num, time()-start)
             return False
 
-    compute(num, time()-start, isprime=True)
+    compute(num, time()-start)
     return True
 
-def compute(inpt, result, isprime=False):
+def compute(inpt, result):
 
     result = format(result, '.12f')
 
     SPACE = ' | '
-    HEADER = 'Input:'.ljust(12) + SPACE + 'Spent time(in secs):'.ljust(30) + SPACE + 'Prime number:'.ljust(13) + '\n'
+    HEADER = 'Input:'.ljust(12) + SPACE + 'Spent time(in secs):'.ljust(30) + '\n'
 
     try:
-        file = open('resultsforprimes.txt', 'r+')
+        file = open('printedprimetable.txt', 'r+')
         if file.readline() != HEADER:
             file.write(HEADER)
             file.close()
     except FileNotFoundError:
-        open('resultsforprimes.txt', 'w').write(HEADER)
+        open('printedprimetable.txt', 'w').write(HEADER)
     
-    isprime = '' if isprime is False else True
-    
-    file = open('resultsforprimes.txt', 'a')
-    file.write('-'*61 + '\n')
-    file.write(str(inpt).rjust(12) + SPACE + str(result).rjust(30) + SPACE + str(isprime).rjust(13) + '\n')
-    file.write('-'*61 + '\n')
+    file = open('printedprimetable.txt', 'a')
+    file.write('-'*45 + '\n')
+    file.write(str(inpt).rjust(12) + SPACE + str(result).rjust(30) + '\n')
+    file.write('-'*45 + '\n')
     file.close()
 
 def totalprimes():
     total = 0
-    file = open('resultsforprimes.txt', 'r')
+    file = open('printedprimetable.txt', 'r')
     for line in file.readlines():
-        if 'True' in line:
+        if '.' in line:
             total += 1
     file.close()
-    open('resultsforprimes.txt', 'a').write('Total prime numbers:' + ' '*35 + str(total).rjust(6) + '\n')
+    open('printedprimetable.txt', 'a').write('Total prime numbers:'.ljust(39) + str(total).rjust(6) + '\n')
 
 def main(times, start=0):
     if start >= times:
@@ -66,10 +63,11 @@ def main(times, start=0):
 
     try:
         totalprimes()
-        print('Statistics exported to resultsforprimes.txt with success')
+        print('Statistics exported to printedprimetable.txt with success')
     except FileNotFoundError:
         print('Fail when exporting statistics')
-    
+        
+
 if __name__=='__main__':
     try:
         if len(argv) == 2:
