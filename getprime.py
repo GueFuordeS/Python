@@ -19,31 +19,31 @@ def prime(num):
 
     return True
 
-def yieldprimes(total):
-    result = []
-    count = 2
-    while len(result) < total:
-        if prime(count):
-            result.append(count)
-        count += 1
-    
-    return result
+def yieldprime(target):
+    count = 1
+    primes = 2
+    while True:
+        if count == target:
+            return primes
+        primes += 1
+        if prime(primes):
+            count += 1
 
 def main():
     start = time()
     
     try:
-        total = int(argv[1])
-        if int(argv[1]) < 0:
+        target = int(argv[1])
+        if int(argv[1]) <= 0:
             raise ValueError
     except(IndexError, ValueError):
-        print('Needed a integer as command line argument')
+        print('Needed a positive integer as command line argument')
         return
 
-    primes = yieldprimes(total)
+    prime = yieldprime(target)
 
-    print('Fetched %d primes in %.12f seconds' %(total, time() - start))
-    print(primes)
+    print('Taked %.12f seconds to fetch' %(time() - start))
+    print(prime)
 
 if __name__=='__main__':
     main()
