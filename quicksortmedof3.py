@@ -7,9 +7,18 @@ def sort(array, lbound=0, rbound=None):
         rbound = len(array)-1
 
     if lbound < rbound:
+        medPivot(array, lbound, rbound)
         pivot = partition(array, lbound, lbound, rbound-1, rbound)
         sort(array, lbound, pivot-1)
         sort(array, pivot+1, rbound)
+
+
+def medPivot(array, lbound, rbound):
+    mid = (rbound-lbound)//2
+    if array[lbound] > array[rbound]:
+        swap(array, lbound, rbound)
+    if array[mid] < array[rbound]:
+        swap(array, mid, rbound)
 
 
 def partition(array, lbound, lhand, rhand, rbound):
