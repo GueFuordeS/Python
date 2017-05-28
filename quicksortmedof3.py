@@ -56,8 +56,8 @@ if __name__=='__main__':
     start = time()
     array = [randint(0,10000) for i in range(1000)]
     print('Before:')
-    pprint(array, compact=True, width=50)
+    pprint(array, compact=True)
     sort(array)
     print('\nAfter:')
-    pprint(array,  compact=True, width=50)
-    print('\nTime passed: {:.9f}'.format(time()-start))
+    pprint(array,  compact=True)
+    print('\Passed time: {:.9f} secs'.format(time()-start))
