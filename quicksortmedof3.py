@@ -2,6 +2,10 @@
 # My implementation of the quicksort(default)
 # Gabriel Fernandes
 
+from random import randint
+from pprint import pprint
+from time import time
+
 def sort(array, lbound=0, rbound=None):
     if rbound == None:
         rbound = len(array)-1
@@ -49,7 +53,11 @@ def swap(array, lindex, rindex):
 
 
 if __name__=='__main__':
-    array = [5, 4, 3, 6, 4]
-    print('Before: {0}'.format(array))
-    sort(array, 0, 4)
-    print('After:  {0}'.format(array))
+    start = time()
+    array = [randint(0,10000) for i in range(1000)]
+    print('Before:')
+    pprint(array, compact=True, width=50)
+    sort(array)
+    print('\nAfter:')
+    pprint(array,  compact=True, width=50)
+    print('\nTime passed: {:.9f}'.format(time()-start))
