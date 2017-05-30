@@ -60,4 +60,4 @@ if __name__=='__main__':
     sort(array)
     print('\nAfter:')
     pprint(array,  compact=True)
-    print('\Passed time: {:.9f} secs'.format(time()-start))
+    print('\nPassed time: {:.9f} secs'.format(time()-start))
