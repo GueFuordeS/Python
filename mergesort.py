@@ -56,10 +56,7 @@ def test():
 
 def benchmark():
     start = time()
-    arr = [i for i in range(500000)]
-    aux = [i for i in range(500000)]
-    arr = arr + aux
-    sort(arr)
+    arr = [i for i in range(1000000)]
     arr2 = arr[:]
     random.shuffle(arr)
     assert arr != arr2
