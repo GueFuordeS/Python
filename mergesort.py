@@ -1,3 +1,4 @@
+from time import time
 import random
 
 def sort(array, lbound=0, rbound=None):
@@ -53,6 +54,16 @@ def test():
     
     return 'test pass!'
 
+def benchmark():
+    start = time()
+    arr = [i for i in range(100000)]
+    arr2 = arr[:]
+    random.shuffle(arr)
+    assert arr != arr2
+    sort(arr)
+    assert arr == arr2
+    
+    print('Taked time:', time()-start)
 
 if __name__=='__main__':
-    test()
+    benchmark()
