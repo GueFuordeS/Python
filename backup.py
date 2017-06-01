@@ -6,10 +6,10 @@ def sort(array):
     #o maior elemento existente em nosso array
     gap = findmin(array)
     aux = [0]*(findmax(array)+1-gap)
-
+    
     #computa repeticoes no array
     for e in array:
-        aux[e-gap] += 1
+        aux[e] += 1
     
     #realca a diferenca pro elemento anterior
     for i in range(1, len(aux)):
@@ -20,7 +20,7 @@ def sort(array):
     j = len(array)-1  #j vai ser o iterador para o array original
     while i > 0:
         if aux[i] > aux[i-1]:
-                array[j] = i+gap
+                array[j] = i
                 aux[i] -= 1
                 j -= 1
         else:
@@ -29,7 +29,7 @@ def sort(array):
     #primeiro elemento precisa ser adcionado a parte
     #visto q n tem como comparar ele com o antecessor
     for i in range(aux[0]):
-        array[j] = 0+gap
+        array[j] = 0
         j -= 1
     
     #para propositos de teste retornamos o array,
@@ -45,7 +45,6 @@ def findmax(array):
     
     return maxi
 
-
 def findmin(array):
     mine = array[0]
     for e in array:
@@ -53,7 +52,6 @@ def findmin(array):
             mine = e
     
     return mine
-
 
 def test():
     assert sort([4,3,2,1]) == [1,2,3,4]
@@ -68,16 +66,6 @@ def test():
     return 'test pass!'
 
 
-def test2():
-    start = time()
-    arr = [random.randint(-99999, 99999) for i in range(10000)]
-    arr2 = arr[:]
-    sort(arr)
-    arr2.sort()
-    assert arr == arr2
-    print('Taked time: {:.9f} secs'.format(time()-start))
-
-
 def benchmark():
     start = time()
     arr = [i for i in range(1000000)]
@@ -88,7 +76,7 @@ def benchmark():
     assert arr == arr2
     
     print('Taked time: {:.9f} secs'.format(time()-start))
-
+    
     
 if __name__=='__main__':
-    test2()
+    benchmark()
