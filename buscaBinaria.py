@@ -64,16 +64,16 @@ def quicksort(list, start, end):
 
 
 ######## interface com usuário #########
-print "Digite os números da lista que deseja usar em sequencia: "
+print("Digite os números da lista que deseja usar em sequencia: ")
 lista = raw_input().split()
 inicio = 0
 fim = len(lista)-1
 quicksort(lista,inicio,fim)
 for i in range(len(lista)):
 	lista[i] = int(lista[i])
-print "Lista ordenada: "
-print lista
+print("Lista ordenada: ")
+print(lista)
 
-print "Digite um número que deseja procurar na lista: "
+print("Digite um número que deseja procurar na lista: ")
 num = int(raw_input())
-print buscaBinariaIndice(lista,num)
+print(buscaBinariaIndice(lista,num))
