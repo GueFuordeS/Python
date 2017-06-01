@@ -56,14 +56,17 @@ def test():
 
 def benchmark():
     start = time()
-    arr = [i for i in range(100000)]
+    arr = [i for i in range(500000)]
+    aux = [i for i in range(500000)]
+    arr = arr + aux
+    sort(arr)
     arr2 = arr[:]
     random.shuffle(arr)
     assert arr != arr2
     sort(arr)
     assert arr == arr2
     
-    print('Taked time:', time()-start)
+    print('Taked time: {:.9f} secs'.format(time()-start))
     
 if __name__=='__main__':
     benchmark()
