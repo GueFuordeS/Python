@@ -62,7 +62,7 @@ def benchmark():
     assert arr != arr2
     sort(arr)
     assert arr == arr2
-    
+
     print('Taked time: {:.9f} secs'.format(time()-start))
 
 if __name__=='__main__':
