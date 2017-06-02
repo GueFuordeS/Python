@@ -1,11 +1,11 @@
 from time import time
 import random
+import 
 
 def sort(array):
     #inicia lista auxiliar com indices disponiveis ate
     #o maior elemento existente em nosso array
     gap = findmin(array)
-    aux = [0]*(findmax(array)+1-gap)
 
     #computa repeticoes no array
     for e in array:
