@@ -1,5 +1,5 @@
 # Easy peasy lemon squeezy
-# My implementation of the quicksort(default)
+# My implementation of the quicksort(with median of 3 to find a better pivot)
 # Gabriel Fernandes
 
 from random import randint
