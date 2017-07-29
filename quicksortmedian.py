@@ -12,7 +12,7 @@ def sort(array, lbound=0, rbound=None):
         rbound = len(array)-1
 
     if lbound < rbound:
-        pindex = halfSelectionSort(array, lbound, rbound)
+        pindex = median(array, lbound, rbound)
         swap(array, pindex, rbound)
         pivot = partition(array, lbound, rbound-1, rbound)
         sort(array, lbound, pivot-1)
@@ -21,11 +21,25 @@ def sort(array, lbound=0, rbound=None):
     return array
 
 
-def halfSelectionSort(array, lbound, rbound):
-    middle = (rbound - lbound) // 2
-    lesser = rbound
+def median(array, lbound, rbound):
+    middle = (lbound + rbound) // 2
 
-    return lesser
+    lesser = rbound
+    for i in range(lbound, rbound):
+        if array[i] < array[lesser]:
+            lesser = i
+
+    index = lbound
+    ocurr = 0
+    less = float('inf')
+    while index + ocurr <= middle:
+        for i in range(lbound, rbound + 1):
+            if array[i] > array[lesser]:
+                if array[i] < array[less]:
+                    pass
+
+        index += 1
+    return middle
 
 
 def partition(array, lhand, rhand, rbound):
@@ -85,6 +99,9 @@ def test3():
 
 
 if __name__ == '__main__':
+    '''
     test()
     test2()
     test3()
+    '''
+    print(median([1,3,2],0,2))
