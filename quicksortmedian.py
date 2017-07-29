@@ -65,7 +65,7 @@ def test():
         tmp = list(range(100))
         shuffle(tmp)
         assert sort(tmp) == list(range(100))
-    
+
     return 'test pass!'
 
 
