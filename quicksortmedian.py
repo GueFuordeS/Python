@@ -7,6 +7,7 @@ from random import shuffle
 from pprint import pprint
 from time import time
 
+
 def sort(array, lbound=0, rbound=None):
     if rbound == None:
         rbound = len(array)-1
@@ -24,22 +25,37 @@ def sort(array, lbound=0, rbound=None):
 def median(array, lbound, rbound):
     middle = (lbound + rbound) // 2
 
-    lesser = rbound
+    med = rbound
     for i in range(lbound, rbound):
-        if array[i] < array[lesser]:
-            lesser = i
+        if array[i] < array[med]:
+            med = i
 
     index = lbound
     ocurr = 0
-    less = float('inf')
-    while index + ocurr <= middle:
-        for i in range(lbound, rbound + 1):
-            if array[i] > array[lesser]:
-                if array[i] < array[less]:
-                    pass
 
+    while index + ocurr <= middle:
+        lesser = lbound if med != lbound else lbound + 1
+        for i in range(lbound, rbound + 1):
+            if array[i] > array[med]:
+                if array[i] < array[lesser]:
+                    lesser = i
+                if array[i] == array[med] and i != med:
+                    ocurr += 1
+        med = lesser
         index += 1
-    return middle
+
+        return med
+
+
+def minorafter(array, index):
+    minor = None
+    for i in range(len(array)):
+        if array[i] >= array[index] and i != index:
+            if minor == None:
+                minor = i
+            elif array[i] < array[minor]:
+                minor = i
+    return minor
 
 
 def partition(array, lhand, rhand, rbound):
@@ -81,11 +97,13 @@ def test():
 def test2():
     start = time()
     array = [randint(0,10000) for i in range(100)]
-    #print('Before:')
-    #pprint(array, compact=True)
+    copy = array.copy()
+
+
     sort(array)
-    #print('\nAfter:')
-    #pprint(array,  compact=True)
+    copy.sort()
+
+    assert array == copy
     print('Passed time: {:.9f} secs'.format(time()-start))
 
 
@@ -98,10 +116,19 @@ def test3():
     assert arr == [0,1,2,3,4,5,6]
 
 
+def minortest():
+    length = randint(0,20)
+    l = [randint(0,9) for i in range(length)]
+    for i in range(len(l)):
+        try:
+            index = minorafter(l, i)
+            assert l[i] <= l[index] and i != index
+        except TypeError:
+            assert l[i] == max(l) and index == None
+
+
 if __name__ == '__main__':
-    '''
     test()
     test2()
     test3()
-    '''
-    print(median([1,3,2],0,2))
+    minortest()
