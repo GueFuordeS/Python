@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 # Easy peasy lemon squeezy
 # My implementation of the quicksort(with median to find a best pivot)
 # Gabriel Fernandes
