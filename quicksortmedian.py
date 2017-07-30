@@ -5,7 +5,6 @@
 
 from random import randint
 from random import shuffle
-from pprint import pprint
 from time import time
 
 
@@ -23,6 +22,7 @@ def sort(array, lbound=0, rbound=None):
     return array
 
 
+# Sem array auxiliar e sem mexer na posicao de ninguem
 def median(array, lbound, rbound):
     lesser = lbound
     ocurr = 1
