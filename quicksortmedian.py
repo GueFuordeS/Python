@@ -105,12 +105,10 @@ def test2():
     array = [randint(0,10000) for i in range(100)]
     copy = array.copy()
 
-
     sort(array)
     copy.sort()
 
     assert array == copy
-    print('Passed time: {:.9f} secs'.format(time()-start))
 
 
 def test3():
@@ -160,11 +158,68 @@ def mediantest():
     med = median(array, 0, len(array) - 1)
     assert array[med] == 4
 
+    array = [1, 1, 1]
+    med = median(array, 0, len(array) - 1)
+    assert array[med] == 1
+
+    array = [1]
+    med = median(array, 0, len(array) - 1)
+    assert med == 0
+
+    array = [2, 1, 2, 1]
+    med = median(array, 0, len(array) - 1)
+    assert med == 1
+
+    array = [3, 1, 2]
+    med = median(array, 0, len(array) - 1)
+    assert med == 2
+    assert array[med] == 2
+
+    array = [3, 1, 2]
+    med = median(array, 0, len(array) - 1)
+    assert med == 2
+    assert array[med] == 2
+
+    array = [7, 5, 1, 3, 6, 4, 2]
+    med = median(array, 0, len(array) - 1)
+    assert med == 5
+    assert array[med] == 4
+
+    array = [4, 1, 5, 6, 3, 2, 4]
+    med = median(array, 0, len(array) - 1)
+    arr_sorted = array.copy()
+    arr_sorted.sort()
+    del arr_sorted[:len(arr_sorted)//2]
+    assert med == array.index(arr_sorted[0])
+    assert array[med] == arr_sorted[0]
+
+    array = [3, 1, 5, 6, 3, 2, 4]
+    med = median(array, 0, len(array) - 1)
+    arr_sorted = array.copy()
+    arr_sorted.sort()
+    del arr_sorted[:len(arr_sorted)//2]
+    assert med == array.index(arr_sorted[0])
+    assert array[med] == arr_sorted[0]
+
+    array = [randint(0, 9) for i in range(randint(1, 100))]
+    med = median(array, 0, len(array) - 1)
+    arr_sorted = array.copy()
+    arr_sorted.sort()
+    middle = len(arr_sorted)//2 if len(arr_sorted) % 2 == 1 else len(arr_sorted)//2 - 1
+    del arr_sorted[:middle]
+    assert med == array.index(arr_sorted[0])
+    assert array[med] == arr_sorted[0]
+
 
 if __name__ == '__main__':
+    start = time()
+
     test()
     test2()
     test3()
 
     minortest()
     mediantest()
+
+    print('Success!')
+    print('Passed time: {:.9f} secs'.format(time()-start))
