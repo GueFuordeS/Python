@@ -27,11 +27,11 @@ def median(array, lbound, rbound):
     med = lbound
     ocurr = 1
     for i in range(lbound + 1, rbound + 1):
-        if array[i] == array[med]:
-            ocurr += 1
-        elif array[i] < array[med]:
+        if array[i] < array[med]:
             med = i
             ocurr = 1
+        elif array[i] == array[med]:
+            ocurr += 1
 
     middle = (lbound + rbound) // 2
     total = lbound + ocurr
