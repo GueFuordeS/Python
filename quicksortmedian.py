@@ -23,34 +23,34 @@ def sort(array, lbound=0, rbound=None):
 
 
 def median(array, lbound, rbound):
+    lesser = lbound
+    for i in range(lbound + 1, rbound + 1):
+        if array[i] < array[lesser]:
+            lesser = i
+
     middle = (lbound + rbound) // 2
-
-    med = rbound
-    for i in range(lbound, rbound):
-        if array[i] < array[med]:
-            med = i
-
     index = lbound
     ocurr = 0
-
-    while index + ocurr <= middle:
-        lesser = lbound if med != lbound else lbound + 1
-        for i in range(lbound, rbound + 1):
-            if array[i] > array[med]:
-                if array[i] < array[lesser]:
-                    lesser = i
-                if array[i] == array[med] and i != med:
-                    ocurr += 1
-        med = lesser
+    med = lesser
+    while index + ocurr < middle:
+        minor = minorafter(array, med, lbound, rbound)
+        if array[med] == array[minor]:
+            ocurr += 1
+        med = minor
         index += 1
+    print(ocurr)
+    return med
 
-        return med
 
-
-def minorafter(array, index):
+def minorafter(array, index, lbound, rbound):
     minor = None
-    for i in range(len(array)):
-        if array[i] >= array[index] and i != index:
+    ocurr = 0
+    for i in range(lbound, rbound + 1):
+        if array[i] == array[index] and i != index:
+            if minor == None:
+                minor = i
+            ocurr += 1
+        elif array[i] > array[index] and i != index:
             if minor == None:
                 minor = i
             elif array[i] < array[minor]:
@@ -121,14 +121,19 @@ def minortest():
     l = [randint(0,9) for i in range(length)]
     for i in range(len(l)):
         try:
-            index = minorafter(l, i)
+            index = minorafter(l, i, 0, len(l)-1)
             assert l[i] <= l[index] and i != index
         except TypeError:
             assert l[i] == max(l) and index == None
 
 
 if __name__ == '__main__':
+    minortest()
+    l = [3,5,1,2,4,2]
+    print(l)
+    print('median:', l[median(l,0,len(l)-1)])
+'''
     test()
     test2()
     test3()
-    minortest()
+'''
