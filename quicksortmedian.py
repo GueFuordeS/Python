@@ -34,15 +34,13 @@ def median(array, lbound, rbound):
             ocurr = 1
 
     middle = (lbound + rbound) // 2
-    index = lbound
     med = lesser
-    while index + ocurr < middle:
+    total = lbound + ocurr
+    while total <= middle:
         minor = minorafter(array, med, lbound, rbound)
-        if array[med] == array[minor]:
-            ocurr += 1
-        med = minor
-        index += 1
-    print(ocurr)
+        med = minor[0]
+        total += minor[1]
+
     return med
 
 
@@ -157,10 +155,16 @@ def minortest():
         assert max(array) == array[elem_index]
 
 
+def mediantest():
+    array = [3, 6, 7, 1, 4, 2, 5]
+    med = median(array, 0, len(array) - 1)
+    assert array[med] == 4
+
+
 if __name__ == '__main__':
-    '''
     test()
     test2()
     test3()
-    '''
+
     minortest()
+    mediantest()
