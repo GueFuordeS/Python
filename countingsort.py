@@ -10,7 +10,7 @@ def sort(array):
     #computa repeticoes no array
     for e in array:
         aux[e-gap] += 1
-    
+
     #realca a diferenca pro elemento anterior
     for i in range(1, len(aux)):
         aux[i] = aux[i] + aux[i-1]
@@ -31,7 +31,7 @@ def sort(array):
     for i in range(aux[0]):
         array[j] = 0+gap
         j -= 1
-    
+
     #para propositos de teste retornamos o array,
     #apesar dele ser in place
     return array
@@ -42,7 +42,7 @@ def findmax(array):
     for e in array:
         if e > maxi:
             maxi = e
-    
+
     return maxi
 
 
@@ -51,7 +51,7 @@ def findmin(array):
     for e in array:
         if e < mine:
             mine = e
-    
+
     return mine
 
 
@@ -64,7 +64,7 @@ def test():
         tmp = list(range(100))
         random.shuffle(tmp)
         assert sort(tmp) == list(range(100))
-    
+
     return 'test pass!'
 
 
@@ -86,9 +86,11 @@ def benchmark():
     assert arr != arr2
     sort(arr)
     assert arr == arr2
-    
+
     print('Taked time: {:.9f} secs'.format(time()-start))
 
-    
+
 if __name__=='__main__':
+    test()
     test2()
+    benchmark()
