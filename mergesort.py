@@ -1,5 +1,10 @@
+#!/usr/bin/python
+# Gabriel Fernandes
+
+
 from time import time
 import random
+
 
 def sort(array, lbound=0, rbound=None):
     if rbound == None:
@@ -54,6 +59,7 @@ def test():
 
     return 'test pass!'
 
+
 def benchmark():
     start = time()
     arr = [i for i in range(1000000)]
@@ -64,6 +70,7 @@ def benchmark():
     assert arr == arr2
 
     print('Taked time: {:.9f} secs'.format(time()-start))
+
 
 if __name__=='__main__':
     #test()
