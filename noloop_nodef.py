@@ -3,6 +3,7 @@
 # para calcular o fatorial
 # Gabriel Fernandes
 
+
 num = int(input('Digite um numero: '))
 result = 'O fatorial de %d eh' %num
 
@@ -10,7 +11,7 @@ if num > 0:
     total = num
 
     pedaco = 'num -= 1\ntotal *= num\n'
-    pedaco *= (num - 1)
+    pedaco *= num - 1
 
     exec(pedaco)
 
