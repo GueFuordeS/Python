@@ -1,6 +1,6 @@
 def num_sum(numbers):
-    nums = list(filter(lambda e: num_convert(e), numbers))
-    nums = list(map(lambda e: int(e), nums))
+    nums = filter(lambda e: num_convert(e), numbers)
+    nums = map(lambda e: int(e), nums)
 
     return sum(nums)
 
