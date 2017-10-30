@@ -13,8 +13,20 @@ def cut_subtree(tree, leading):
     tree.pop(leading)
 
 
-def find_even_tree(tree):
-    pass
+def reach_even_tree(tree, leaf):
+    reached = False
+    node_counting = 1
+    node = leaf
+    while not reached:
+        node = tree[node][0]
+        node_counting += 1
+        for child in tree[node][1]:
+            node_counting += 1
+        node_counting -= 1
+        if (node_counting % 2 == 0):
+            reached = True
+    cut_subtree(tree, node)
+
 
 def main():
     nodes, edges = map(lambda e: int(e), input().split())
@@ -26,6 +38,12 @@ def main():
         edge = tuple(map(lambda e: int(e), input().split()))
         tree[edge[0]][0] = edge[1]
         tree[edge[1]][1].append(edge[0])
+
+    cuts_counting = -1
+    while (tree != {}):
+        reach_even_tree(tree, yield_leaf(tree))
+        cuts_counting += 1
+    print(cuts_counting)
 
 
 if __name__ == '__main__':
