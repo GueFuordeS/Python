@@ -1,7 +1,10 @@
-def yield_leaf(tree):
+def yield_leaf(tree, offset):
     for node in tree:
         if(tree[node][1] == []):
-            return node
+            if offset <= 0:
+                return node
+            else:
+                offset -= 1
 
 
 def cut_subtree(tree, leading):
@@ -18,6 +21,8 @@ def reach_even_tree(tree, leaf):
     node_counting = 1
     node = leaf
     while not reached:
+        print(node)
+        print(tree)
         node = tree[node][0]
         node_counting += 1
         for child in tree[node][1]:
@@ -25,7 +30,10 @@ def reach_even_tree(tree, leaf):
         node_counting -= 1
         if (node_counting % 2 == 0):
             reached = True
+        if (node == tree[node][0] and reached != True):
+            return False
     cut_subtree(tree, node)
+    return True
 
 
 def main():
@@ -40,9 +48,14 @@ def main():
         tree[edge[1]][1].append(edge[0])
 
     cuts_counting = -1
-    while (tree != {}):
-        reach_even_tree(tree, yield_leaf(tree))
-        cuts_counting += 1
+    offset = 0
+    while tree != {}:
+        reached = reach_even_tree(tree, yield_leaf(tree, offset))
+        if reached:
+            offset = 0
+            cuts_counting += 1
+        else:
+            offset += 1
     print(cuts_counting)
 
 
